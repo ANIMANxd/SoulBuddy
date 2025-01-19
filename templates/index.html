@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>॥ आत्मज्ञान ॥ Spiritual Guidance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Gotu&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #D63447;
+            --secondary-color: #541690;
+            --accent-color: #B4A05A;
+            --bg-color: #1A1A1D;
+            --text-primary: #E8E8E8;
+            --text-secondary: #BBBBBB;
+            --card-bg: rgba(38, 38, 45, 0.95);
+            --input-bg: rgba(45, 45, 50, 0.9);
+            --mandala-color1: #D63447;
+            --mandala-color2: #541690;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(26, 26, 29, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-family: 'Rozha One', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .hero-subtitle {
+            font-family: 'Gotu', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--input-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Gotu', sans-serif;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .results-section {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .insight-card {
+            background: var(--input-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--input-bg);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border-radius: 8px;
+        }
+
+        .user-message {
+            background: var(--primary-color);
+            margin-left: 20%;
+        }
+
+        .bot-message {
+            background: var(--secondary-color);
+            margin-right: 20%;
+        }
+
+        .floating-mantra {
+            position: absolute;
+            color: var(--accent-color);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .scroll-arrow {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .arrow {
+            width: 30px;
+            height: 30px;
+            border-left: 3px solid var(--accent-color);
+            border-bottom: 3px solid var(--accent-color);
+            transform: rotate(-45deg);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) rotate(-45deg);
+            }
+            40% {
+                transform: translateY(-30px) rotate(-45deg);
+            }
+            60% {
+                transform: translateY(-15px) rotate(-45deg);
+            }
+        }
+
+        @keyframes floatUpward {
+            from {
+                transform: translateY(100vh);
+            }
+            to {
+                transform: translateY(-100px);
+            }
+        }
+
+        .sanskrit-circle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            animation: rotate 30s linear infinite;
+        }
+
+        .sanskrit-word {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-family: 'Rozha One', serif;
+            color: var(--accent-color);
+            transform-origin: center;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        .kundali-svg {
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+        
+        .kundali-svg text {
+            font-family: 'Rozha One', serif;
+            font-size: 12px;
+        }
+        
+        .svg-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 100%;
+        }
+        
+        .svg-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .bot-message pre {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="floating-mantras">
+        </div>
+        
+        <div class="sanskrit-circle">
+            <div class="sanskrit-word">ॐ नमः शिवाय</div>
+            <div class="sanskrit-word">सत्यं शिवं सुंदरम्</div>
+            <div class="sanskrit-word">अहं ब्रह्मास्मि</div>
+            <div class="sanskrit-word">तत्त्वमसि</div>
+            <div class="sanskrit-word">सर्वं खल्विदं ब्रह्म</div>
+            <div class="sanskrit-word">प्रज्ञानं ब्रह्म</div>
+            <div class="sanskrit-word">अयं आत्मा ब्रह्म</div>
+            <div class="sanskrit-word">सोऽहम्</div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">॥ ज्योतिष ज्ञान ॥</h1>
+            <p class="hero-subtitle">Jyotish Gyan | ज्योतिष विद्या</p>
+            <p class="hero-description">
+                "यत् पिण्डे तत् ब्रह्माण्डे" | As is the Microcosm, So is the Macrocosm<br>
+                Discover your cosmic connection through ancient Vedic wisdom
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="form-section">
+            <h2>॥ Begin Your Spiritual Journey ॥</h2>
+            <form id="userForm">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="input-group">
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="input-group">
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">पुरुष (Male)</option>
+                        <option value="female">स्त्री (Female)</option>
+                        <option value="other">अन्य (Other)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="state" name="state" placeholder="State" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="city" name="city" placeholder="City" required>
+                </div>
+                <div class="input-group">
+                    <textarea id="mood" name="mood" placeholder="How is your mind and spirit today?" required></textarea>
+                </div>
+                <div class="input-group">
+                    <textarea id="reflection" name="reflection" placeholder="What would you like to change about today's journey?" required></textarea>
+                </div>
+                <button type="submit">॥ Reveal Your Path ॥</button>
+            </form>
+        </div>
+
+        <div class="results-section" id="results" style="display: none;">
+            <h2>॥ Your Divine Insights ॥</h2>
+            <div id="insights"></div>
+            
+            <div class="kundali-chart">
+                <h3>॥ Your Kundali ॥</h3>
+                <div id="kundali"></div>
+            </div>
+            
+            <div class="chat-section">
+                <h3>॥ Spiritual Guidance ॥</h3>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="input-group">
+                    <input type="text" id="chatInput" name="chatInput" placeholder="Ask for guidance...">
+                    <button type="button" onclick="sendMessage()">Send 🕉️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-arrow">
+        <div class="arrow"></div>
+    </div>
+    <script>
+        const mantras = [
+            'ॐ', 'नमः', 'शिवाय', 'सत्यम्', 'शान्ति', 'आनन्द', 
+            'धर्म', 'कर्म', 'योग', 'ध्यान', 'मोक्ष', 'भक्ति',
+            'प्रेम', 'ज्ञान', 'विद्या', 'गुरु', 'शक्ति', 'सेवा'
+        ];
+
+        function createFloatingMantra() {
+            const mantra = document.createElement('div');
+            mantra.className = 'floating-mantra';
+            mantra.textContent = mantras[Math.floor(Math.random() * mantras.length)];
+            mantra.style.left = Math.random() * 100 + 'vw';
+            mantra.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            mantra.style.animation = `floatUpward ${Math.random() * 10 + 10}s linear`;
+            
+            document.querySelector('.floating-mantras').appendChild(mantra);
+            
+            mantra.addEventListener('animationend', () => {
+                mantra.remove();
+            });
+        }
+
+        setInterval(createFloatingMantra, 2000);
+        
+        for(let i = 0; i < 10; i++) {
+            createFloatingMantra();
+        }
+
+        document.getElementById('userForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                dob: document.getElementById('dob').value,
+                time: document.getElementById('time').value,
+                gender: document.getElementById('gender').value,
+                state: document.getElementById('state').value,
+                city: document.getElementById('city').value,
+                mood: document.getElementById('mood').value,
+                reflection: document.getElementById('reflection').value
+            };
+
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                }
+
+                const responseData = await response.json();
+                displayResults(responseData);
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('॥ क्षमा करें ॥ ' + error.message);
+            }
+        });
+
+        function displayResults(data) {
+            const insights = document.getElementById('insights');
+            insights.innerHTML = '';
+            
+            try {
+                const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
+                Object.entries(parsedData).forEach(([key, value]) => {
+                    if (key !== 'kundali') {
+                        const card = document.createElement('div');
+                        card.className = 'insight-card';
+                        card.innerHTML = `
+                            <h3>✧ ${key.replace(/_/g, ' ').toUpperCase()} ✧</h3>
+                            <p>${value}</p>
+                        `;
+                        insights.appendChild(card);
+                    }});
+
+if (parsedData.kundali) {
+    document.getElementById('kundali').innerHTML = parsedData.kundali;
+}
+} catch (error) {
+console.error('Error parsing results:', error);
+alert('Sorry, there was an error displaying your results. Please try again.');
+}
+}
+
+const chatInput = document.getElementById('chatInput');
+
+async function sendMessage() {
+const message = chatInput.value.trim();
+if (!message) return;
+
+addMessage(message, 'user');
+chatInput.value = '';
+
+try {
+const response = await fetch('/chat', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message })
+});
+
+if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+}
+
+const data = await response.json();
+addMessage(data.response, 'bot');
+} catch (error) {
+console.error('Error:', error);
+addMessage('Sorry, I am unable to respond at the moment. Please try again later.', 'bot');
+}
+}
+
+chatInput.addEventListener('keypress', (e) => {
+if (e.key === 'Enter') {
+sendMessage();
+}
+});
+
+function addMessage(message, type) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}-message`;
+    
+    if (type === 'bot' && typeof message === 'object') {
+        const pre = document.createElement('pre');
+        pre.style.whiteSpace = 'pre-wrap';
+        pre.style.wordBreak = 'break-word';
+        pre.style.fontFamily = 'monospace';
+        pre.textContent = message.display_text;
+        messageDiv.appendChild(pre);
+    } else {
+        messageDiv.textContent = message;
+    }
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+async function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    addMessage(message, 'user');
+    chatInput.value = '';
+
+    try {
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        addMessage(data, 'bot'); 
+    } catch (error) {
+        console.error('Error:', error);
+        addMessage('Sorry, I am unable to respond at the moment. Please try again later.', 'bot');
+    }
+}
+
+</script>
+</body>
+</html>
